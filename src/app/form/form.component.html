@@ -1,0 +1,28 @@
+<div class="form">
+<form>
+<p>
+<mat-form-field> 
+<mat-label>Name</mat-label>
+<input matInput>
+</mat-form-field>
+</p>
+<p>
+<mat-form-field> 
+<mat-label>Email</mat-label>
+<input matInput>
+</mat-form-field>
+</p>
+<label id="feedback">Feedback</label>
+<mat-radio-group aria-labelledby="feedback" class='radiogroup'>
+  <mat-radio-button *ngFor="let fdbk of feedbacks" class='radiobtn'>
+    {{ fdbk }}
+  </mat-radio-button>
+</mat-radio-group>
+<br><br>
+<label for="comments">Comments</label><br>
+<mat-form-field> 
+<mat-label>Comment</mat-label>
+<textarea matInput></textarea>
+</mat-form-field>
+</form>
+</div> 
