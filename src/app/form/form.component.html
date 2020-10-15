@@ -1,28 +1,78 @@
-<div class="form">
-<form>
-<p>
-<mat-form-field> 
-<mat-label>Name</mat-label>
-<input matInput>
-</mat-form-field>
-</p>
-<p>
-<mat-form-field> 
-<mat-label>Email</mat-label>
-<input matInput>
-</mat-form-field>
-</p>
-<label id="feedback">Feedback</label>
-<mat-radio-group aria-labelledby="feedback" class='radiogroup'>
-  <mat-radio-button *ngFor="let fdbk of feedbacks" class='radiobtn'>
-    {{ fdbk }}
-  </mat-radio-button>
-</mat-radio-group>
-<br><br>
-<label for="comments">Comments</label><br>
-<mat-form-field> 
-<mat-label>Comment</mat-label>
-<textarea matInput></textarea>
-</mat-form-field>
+<br>
+<form [formGroup]="feedbackForm">
+<mat-accordion class="example-headers-align">
+    <mat-expansion-panel style="margin-left: auto; margin-right: auto; width: 70%;" [expanded]="step === 0" (opened)="setStep(0)" hideToggle>
+      <mat-expansion-panel-header>
+        <mat-panel-title>
+          Name
+        </mat-panel-title>
+      </mat-expansion-panel-header>
+        <input matInput type="text" formControlName="name">  
+      <mat-action-row>
+        <button mat-button color="primary" (click)="nextStep()">Next</button>
+      </mat-action-row>
+    </mat-expansion-panel>
+  
+    <mat-expansion-panel style="margin-left: auto; margin-right: auto; width: 70%;" [expanded]="step === 1" (opened)="setStep(1)" hideToggle>
+      <mat-expansion-panel-header>
+        <mat-panel-title>
+          Email
+        </mat-panel-title>
+      </mat-expansion-panel-header>
+  
+        <input matInput type="email" formControlName="email">
+  
+      <mat-action-row>
+        <button mat-button color="warn" (click)="prevStep()">Previous</button>
+        <button mat-button color="primary" (click)="nextStep()">Next</button>
+      </mat-action-row>
+    </mat-expansion-panel>
+  
+    <mat-expansion-panel style="margin-left: auto; margin-right: auto; width: 70%;" [expanded]="step === 2" (opened)="setStep(2)" hideToggle>
+      <mat-expansion-panel-header>
+        <mat-panel-title>
+          Feedback
+        </mat-panel-title>
+      </mat-expansion-panel-header>
+  
+        <input type="radio" id="great" name="gender" value="great">
+        <label for="great">Great</label><br>
+        <input type="radio" id="Okay" name="gender" value="Okay">
+        <label for="Okay">Okay</label><br>
+        <input type="radio" id="Not_good" name="Not_good" value="Not_good">
+        <label for="Not_good">Not Good</label>         <!-- <input matInput [matDatepicker]="picker" (focus)="picker.open()" readonly> -->
+      <!-- <mat-datepicker #picker></mat-datepicker> -->
+  
+      <mat-action-row>
+        <button mat-button color="warn" (click)="prevStep()">Previous</button>
+        <button mat-button color="primary" (click)="nextStep()">Next</button>
+      </mat-action-row>
+    </mat-expansion-panel>
+    
+    <mat-expansion-panel style="margin-left: auto; margin-right: auto; width: 70%;" [expanded]="step === 3" (opened)="setStep(3)" hideToggle>
+      <mat-expansion-panel-header>
+        <mat-panel-title>
+          Comments
+        </mat-panel-title>
+      </mat-expansion-panel-header>
+  
+        <input matInput type="text" formControlName="comments">
+        <mat-action-row>
+          <button mat-button color="warn" (click)="prevStep()">Previous</button>
+          <button mat-button color="primary" (click)="nextStep()">End</button>
+        </mat-action-row>
+     
+    </mat-expansion-panel>
+  </mat-accordion>
 </form>
-</div> 
+
+  <mat-card class="example-card" style="text-align: center; width: 80%; background-color: whitesmoke; margin-left: auto; margin-right: auto;">
+    <mat-card-header style="text-align: center;">
+      <mat-card-title style="color: darkorange; margin-left: auto; margin-right: auto;">THANK YOU!</mat-card-title>
+      <!-- <mat-card-subtitle>Dog Breed</mat-card-subtitle> -->
+    </mat-card-header>
+    <img mat-card-image src="../../assets/avatar.png" style="border-radius: 50%; width: 40%;" alt="avatar">
+    <mat-card-content>
+    </mat-card-content>
+  </mat-card>
+  <br>

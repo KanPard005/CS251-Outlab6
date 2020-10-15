@@ -1,11 +1,104 @@
-.danish {
-  text-align: center;
-  margin: 20px;
-  border: 3px solid black;
+.example-card {
+  max-width: 400px;
 }
 
-.kanad {
-  text-align: center;
+.example-header-image {
+  background-image: url('https://material.angular.io/assets/img/examples/shiba1.jpg');
+  background-size: cover;
+  box-shadow: 10px 10px 5px grey;
+
+}
+.left{
+  float: left;
+  display: inline;
+  margin-right: 5%;
+  width: max-content;
+  box-shadow: 10px 10px 5px grey;
+
+}
+.right{
+  display: inline;
+  margin-left: 5%;
+  float: inline-end;
+  width: max-content;
+  box-shadow: 10px 10px 5px grey;
+
+}
+.container{
+  position: relative;
+  display: flex;
+  align-items: center;
+  width: fit-content;
+  top: 20%;
+  max-width: 100%;
+  margin: auto;
+}
+mat-card-image{
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.github{
+  background-image: url('https://avatars1.githubusercontent.com/u/9919?s=200&v=4');
+  width: 50px;
+  height: 50px;
+  border-radius: 100%;
+  background-size: 100%;
+  transition: all .1s ease-in-out;
   margin: 20px;
-  border: 3px solid black;
+  border-width: 0px;
+  box-shadow: 10px 10px 5px grey;
+
+}
+.github:hover{
+ transform: scale(1.5);
+}
+.facebook{
+  background-image: url('https://facebookbrand.com/wp-content/uploads/2019/10/flogo_RGB_HEX-BRC-Site-250.png?w=250&h=250');
+  width: 50px;
+  height: 50px;
+  border-radius: 100%;
+  background-size: 100%;
+  transition: all .1s ease-in-out;
+  margin: 20px;
+  border-width: 0px;
+  box-shadow: 10px 10px 5px grey;
+
+}
+.facebook:hover{
+  transform: scale(1.5);
+}
+.linkedin{
+  background-image: url('https://www.flaticon.com/svg/static/icons/svg/145/145807.svg');
+  width: 50px;
+  height: 50px;
+  border-radius: 100%;
+  background-size: 100%;
+  transition: all .1s ease-in-out;
+  margin: 20px;
+  border-width: 0px;
+  box-shadow: 10px 10px 5px grey;
+
+}
+.linkedin:hover{
+  transform: scale(1.5);
+}
+
+.phone{
+  background-image: url('https://e7.pngegg.com/pngimages/672/164/png-clipart-whatsapp-icon-whatsapp-logo-computer-icons-zubees-halal-foods-whatsapp-text-circle-thumbnail.png');
+  width: 50px;
+  height: 50px;
+  border-radius: 100%;
+  background-size: 100%;
+  transition: all .1s ease-in-out;
+  margin: 20px;
+  border-width: 0px;
+  box-shadow: 10px 10px 5px grey;
+}
+.phone :hover{
+  transform: scale(1.5);
+
 }
