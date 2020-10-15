@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
+import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { FormService } from './form.service';
 // import { CommonService } from '../common.service'
 class Form{
@@ -30,28 +30,19 @@ export class FormComponent implements OnInit {
 
   }
   step;
-   form: Form;
-  setStep(index: number) {
-    this.step = index;
-  }
+  setStep(index: number) {this.step = index;}
+  nextStep(){this.step++;}
+  prevStep(){this.step--;}
 
-  nextStep() {
-    this.step++;
-  }
-
-  prevStep() {
-    this.step--;
-  }
   ngOnInit() {
     this.Getforms();
-    this.feedbackForm.patchValue(this.getform);
-    console.log(this.feedbackForm.valueChanges)
+    this.feedbackForm=new FormGroup({
+      name: new FormControl(this.getform.name, [Validators.required]),
+      email: new FormControl(this.getform.email, [Validators.required, Validators.email]),
+      feedback: new FormControl(this.getform.feedback, [Validators.required]),
+      comments: new FormControl(this.getform.comments)
+    });
   }
-
-  setform(): Form{
-    return {name: 'danish', email: 'danishangurl28@gmail.com', feedback: 'Okay', comments: 'good work'};
-  }
-
   Getforms(){
     console.log('in getforms');
     this.formservice.getfeed().subscribe(result=>{
@@ -59,6 +50,10 @@ export class FormComponent implements OnInit {
       this.getform=result;
     }, error=>console.log('error: ', error));
   }
-
+  postform(){
+    //post function
+    window.location.reload();
+    console.log(this.feedbackForm.value);
+  }
 
 }
