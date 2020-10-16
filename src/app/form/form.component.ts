@@ -1,14 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
-import { FormService } from './form.service';
-// import { CommonService } from '../common.service'
-class Form{
-  name: string;
-  email:string;
-  feedback: string;
-  comments: string
-
-}
+import { FormService } from '../form.service';
+import { Form } from '../form';
 
 @Component({
   selector: 'app-form',
@@ -22,7 +15,7 @@ export class FormComponent implements OnInit {
     name: new FormControl(''),
     email: new FormControl(''),
     feedback: new FormControl(''),
-    comments: new FormControl(''),
+    comment: new FormControl(''),
   });
   getform: Form;   
 
@@ -35,25 +28,19 @@ export class FormComponent implements OnInit {
   prevStep(){this.step--;}
 
   ngOnInit() {
-    this.Getforms();
-    this.feedbackForm=new FormGroup({
-      name: new FormControl(this.getform.name, [Validators.required]),
-      email: new FormControl(this.getform.email, [Validators.required, Validators.email]),
-      feedback: new FormControl(this.getform.feedback, [Validators.required]),
-      comments: new FormControl(this.getform.comments)
-    });
-  }
-  Getforms(){
-    console.log('in getforms');
-    this.formservice.getfeed().subscribe(result=>{
-      console.log('data: ', result);
-      this.getform=result;
-    }, error=>console.log('error: ', error));
-  }
-  postform(){
-    //post function
-    window.location.reload();
-    console.log(this.feedbackForm.value);
+    this.getData();
   }
 
+  getData(): void {
+    this.formservice.getForm().subscribe(form=>this.feedbackForm.setValue(form));
+  }
+
+  onSubmit(): void {
+    this.formservice.postForm(this.feedbackForm.value).subscribe(form => {
+      delete form['created'];
+      console.log(JSON.stringify(form));
+      this.feedbackForm.setValue(form);
+    }
+    );
+  }
 }

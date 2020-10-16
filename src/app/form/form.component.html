@@ -1,5 +1,5 @@
 <br>
-<form [formGroup]="feedbackForm" ngSubmit=""> 
+<form [formGroup]="feedbackForm" (ngSubmit)="onSubmit()"> 
 <mat-accordion class="example-headers-align">
     <mat-expansion-panel style="margin-left: auto; margin-right: auto; width: 70%;" [expanded]="step === 0" (opened)="setStep(0)" hideToggle>
       <mat-expansion-panel-header>
@@ -54,10 +54,10 @@
         </mat-panel-title>
       </mat-expansion-panel-header>
   
-        <input matInput type="text" formControlName="comments">
+        <textarea matInput type="text" formControlName="comment"></textarea>
         <mat-action-row>
           <button mat-button color="warn" (click)="prevStep()" [disabled]="!feedbackForm.valid">Previous</button>
-          <button mat-button color="primary" type="submit" (click)="postform()">End</button>
+          <button mat-button color="primary" type="submit">End</button>
         </mat-action-row>
      
     </mat-expansion-panel>
