@@ -24,10 +24,9 @@ export class FormComponent implements OnInit {
     feedback: new FormControl(''),
     comment: new FormControl(''),
   });
-  getform: Form;   
-
+  getform: Form;
   constructor(private _f: FormBuilder, private formservice: FormService) {
-
+    this.getform= new Form();
   }
   step;
   setStep(index: number) {this.step = index;}
@@ -38,7 +37,7 @@ export class FormComponent implements OnInit {
     this.feedbackForm=new FormGroup({
       name: new FormControl('',Validators.required),
       email: new FormControl('', Validators.compose([Validators.required, Validators.email])),
-      feedback: new FormControl('', Validators.required),
+      feedback: new FormControl(''),
       comment: new FormControl('')
     });
   }
@@ -50,7 +49,7 @@ export class FormComponent implements OnInit {
     }, error=>console.log('error: ', error));
   }
   onSubmit(): void {
-    console.log(this.feedbackForm.valid);
+    if(!this.feedbackForm.value['feedback']){this.feedbackForm.value['feedback']=this.getform.feedback}
     if(this.feedbackForm.valid){
       this.formservice.postForm(this.feedbackForm.value).subscribe(form => {
         delete form['created'];

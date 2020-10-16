@@ -7,7 +7,7 @@
           Name
         </mat-panel-title>
       </mat-expansion-panel-header>
-        <input matInput type="text" formControlName="name" placeholder="{{getform.name}}">  
+        <input matInput type="text" [placeholder]="getform.name" formControlName="name" >  
       <mat-action-row>
         <button mat-button class="next-button" type="button" (click)="nextStep()">Next</button>
       </mat-action-row>
@@ -36,7 +36,7 @@
       </mat-expansion-panel-header>
       <mat-radio-group formControlName="feedback">
       <div *ngFor='let fb of feedbacks'>
-        <mat-radio-button value='{{fb}}' [checked]='fb==getform.feedback'> {{fb}} </mat-radio-button>
+        <mat-radio-button value='{{fb}} '[checked]='fb==getform.feedback'> {{fb}} </mat-radio-button>
       </div>
       </mat-radio-group>
       <mat-action-row>
