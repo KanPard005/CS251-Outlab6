@@ -18,7 +18,7 @@
         <button mat-button class="github" onclick="window.location.href='https://danish-angural.github.io';"></button>
         <button mat-button class="facebook" onclick="window.location.href='https://danish-angural.github.io';"></button>
         <button mat-button class="linkedin" onclick="window.location.href='https://danish-angural.github.io';"></button>
-        <button class="phone" onclick="window.location.href='https://danish-angural.github.io';"></button>
+        <button class="phone" [cdkCopyToClipboard]="value1" onclick="alert('phone number copied to clipboard')"></button>
     </mat-card-actions>
   </mat-card>
 </div>
