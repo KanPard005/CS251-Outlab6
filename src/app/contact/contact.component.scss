@@ -42,7 +42,7 @@ mat-card-image{
 }
 
 .github{
-  background-image: url('https://avatars1.githubusercontent.com/u/9919?s=200&v=4');
+  background-image: url('../../assets/github.png');
   width: 50px;
   height: 50px;
   border-radius: 100%;
@@ -57,7 +57,7 @@ mat-card-image{
  transform: scale(1.5);
 }
 .facebook{
-  background-image: url('https://facebookbrand.com/wp-content/uploads/2019/10/flogo_RGB_HEX-BRC-Site-250.png?w=250&h=250');
+  background-image: url('../../assets/facebook.png');
   width: 50px;
   height: 50px;
   border-radius: 100%;
@@ -72,11 +72,12 @@ mat-card-image{
   transform: scale(1.5);
 }
 .linkedin{
-  background-image: url('https://www.flaticon.com/svg/static/icons/svg/145/145807.svg');
+  background-image: url('../../assets/linkedin.png');
   width: 50px;
   height: 50px;
   border-radius: 100%;
-  background-size: 100%;
+  background-size: 200%;
+  background-position: center;
   transition: all .01s ease-in-out;
   margin: 20px;
   border-width: 0px;
@@ -88,11 +89,12 @@ mat-card-image{
 }
 
 .phone{
-  background-image: url('https://e7.pngegg.com/pngimages/672/164/png-clipart-whatsapp-icon-whatsapp-logo-computer-icons-zubees-halal-foods-whatsapp-text-circle-thumbnail.png');
+  background-image: url('../../assets/whatsapp.png');
   width: 50px;
   height: 50px;
   border-radius: 100%;
   background-size: 100%;
+  background-position: center;
   transition: all .01s ease-in-out;
   margin: 20px;
   border-width: 0px;
