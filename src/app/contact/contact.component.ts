@@ -10,7 +10,7 @@ export class ContactComponent implements OnInit {
   value2: String;
 
   constructor() {
-    this.value1='';
+    this.value1='9911933299';
     this.value2='7380086948'
    }
 
