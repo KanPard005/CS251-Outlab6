@@ -33,14 +33,13 @@ export class FormComponent implements OnInit {
   setStep(index: number) {this.step = index;}
   nextStep(){this.step++;}
   prevStep(){this.step--;}
-
   ngOnInit() {
     this.Getforms();
     this.feedbackForm=new FormGroup({
-      name: new FormControl(this.getform.name, [Validators.required]),
-      email: new FormControl(this.getform.email, [Validators.required, Validators.email]),
-      feedback: new FormControl(this.getform.feedback, [Validators.required]),
-      comment: new FormControl(this.getform.comment)
+      name: new FormControl('',Validators.required),
+      email: new FormControl('', Validators.compose([Validators.required, Validators.email])),
+      feedback: new FormControl('', Validators.required),
+      comment: new FormControl('')
     });
   }
   Getforms(){
@@ -51,12 +50,17 @@ export class FormComponent implements OnInit {
     }, error=>console.log('error: ', error));
   }
   onSubmit(): void {
-    this.formservice.postForm(this.feedbackForm.value).subscribe(form => {
-      delete form['created'];
-      
-      console.log(JSON.stringify(form));
-      this.feedbackForm.setValue(form);
+    console.log(this.feedbackForm.valid);
+    if(this.feedbackForm.valid){
+      this.formservice.postForm(this.feedbackForm.value).subscribe(form => {
+        delete form['created'];
+        
+        console.log(JSON.stringify(form));
+        this.feedbackForm.setValue(form);
+      });
     }
-    );
+    else{
+      alert('please enter valid input fields')
+    }
   }
 }

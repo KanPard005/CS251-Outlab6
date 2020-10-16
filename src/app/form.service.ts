@@ -25,7 +25,7 @@ export class FormService {
 
   postForm(form: Form): Observable<Form> {
     return this.http.post<Form>(this.postformUrl, form, this.httpOptions).pipe(
-      tap((postedForm: Form) => alert('Submitted successfully!')),
+      tap((postedForm: Form) => alert('Submitted successfully!\n'+postedForm)),
       catchError(this.handleError('onSubmit()', form))
     );
   }
