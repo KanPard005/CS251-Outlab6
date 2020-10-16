@@ -1,5 +1,5 @@
 <br>
-<form [formGroup]="feedbackForm" ngSubmit=""> 
+<form [formGroup]="feedbackForm" (keydown.enter)="$event.preventDefault(); nextStep()" (ngSubmit)="onSubmit()"> 
 <mat-accordion class="example-headers-align">
     <mat-expansion-panel style="margin-left: auto; margin-right: auto; width: 70%;" [expanded]="step === 0" (opened)="setStep(0)" hideToggle>
       <mat-expansion-panel-header>
@@ -7,9 +7,9 @@
           Name
         </mat-panel-title>
       </mat-expansion-panel-header>
-        <input matInput type="text" formControlName="name">  
+        <input matInput type="text" formControlName="name" placeholder="{{getform.name}}">  
       <mat-action-row>
-        <button mat-button color="primary" (click)="nextStep()">Next</button>
+        <button mat-button color="primary" type="button" (click)="nextStep()">Next</button>
       </mat-action-row>
     </mat-expansion-panel>
   
@@ -20,11 +20,11 @@
         </mat-panel-title>
       </mat-expansion-panel-header>
   
-        <input matInput type="email" formControlName="email" >
+        <input matInput type="email" formControlName="email" placeholder="{{getform.email}}">
   
       <mat-action-row>
-        <button mat-button color="warn"(click)="prevStep()">Previous</button>
-        <button mat-button color="primary" (click)="nextStep()">Next</button>
+        <button mat-button color="warn" type="button" (click)="prevStep()">Previous</button>
+        <button mat-button color="primary" type="button" (click)="nextStep()">Next</button>
       </mat-action-row>
     </mat-expansion-panel>
   
@@ -35,15 +35,15 @@
         </mat-panel-title>
       </mat-expansion-panel-header>
   
-        <input type="radio" id="great" name="feedback" value="great" formControlName="feedback">
+        <input type="radio" id="great" name="feedback" [value]="feedbacks[0]" formControlName="feedback">
         <label for="great">Great</label><br>
-        <input type="radio" id="Okay" name="feedback" value="Okay" formControlName="feedback">
+        <input type="radio" id="Okay" name="feedback" [value]="feedbacks[1]" formControlName="feedback">
         <label for="Okay">Okay</label><br>
-        <input type="radio" id="Not_good" name="feedback" value="Not_good" formControlName="feedback">
+        <input type="radio" id="Not_good" name="feedback" [value]="feedbacks[2]" formControlName="feedback">
         <label for="Not_good">Not Good</label> 
       <mat-action-row>
-        <button mat-button color="warn" (click)="prevStep()">Previous</button>
-        <button mat-button color="primary" (click)="nextStep()">Next</button>
+        <button mat-button color="warn" type="button" (click)="prevStep()">Previous</button>
+        <button mat-button color="primary" type="button" (click)="nextStep()">Next</button>
       </mat-action-row>
     </mat-expansion-panel>
     
@@ -54,10 +54,10 @@
         </mat-panel-title>
       </mat-expansion-panel-header>
   
-        <input matInput type="text" formControlName="comments">
+        <input matInput type="text" formControlName="comment" placeholder="{{getform.comment}}">
         <mat-action-row>
-          <button mat-button color="warn" (click)="prevStep()" [disabled]="!feedbackForm.valid">Previous</button>
-          <button mat-button color="primary" type="submit" (click)="postform()">End</button>
+          <button mat-button color="warn" type="button" (click)="prevStep()" >Previous</button>
+          <button mat-button color="primary" type="submit" [disabled]="!feedbackForm.valid">End</button>
         </mat-action-row>
      
     </mat-expansion-panel>

@@ -6,7 +6,7 @@ class Form{
   name: string;
   email:string;
   feedback: string;
-  comments: string
+  comment: string
 
 }
 
@@ -22,7 +22,7 @@ export class FormComponent implements OnInit {
     name: new FormControl(''),
     email: new FormControl(''),
     feedback: new FormControl(''),
-    comments: new FormControl(''),
+    comment: new FormControl(''),
   });
   getform: Form;   
 
@@ -40,20 +40,24 @@ export class FormComponent implements OnInit {
       name: new FormControl(this.getform.name, [Validators.required]),
       email: new FormControl(this.getform.email, [Validators.required, Validators.email]),
       feedback: new FormControl(this.getform.feedback, [Validators.required]),
-      comments: new FormControl(this.getform.comments)
+      comment: new FormControl(this.getform.comment)
     });
   }
   Getforms(){
     console.log('in getforms');
-    this.formservice.getfeed().subscribe(result=>{
+    this.formservice.getForm().subscribe(result=>{
       console.log('data: ', result);
       this.getform=result;
     }, error=>console.log('error: ', error));
   }
-  postform(){
-    //post function
-    window.location.reload();
-    console.log(this.feedbackForm.value);
+  onSubmit(): void {
+    this.formservice.postForm(this.feedbackForm.value).subscribe(form => {
+      delete form['created'];
+      
+      console.log(JSON.stringify(form));
+      this.feedbackForm.setValue(form);
+    }
+    );
   }
 
 }

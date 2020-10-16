@@ -6,8 +6,13 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./contact.component.scss']
 })
 export class ContactComponent implements OnInit {
+  value1: String;
+  value2: String;
 
-  constructor() { }
+  constructor() {
+    this.value1='';
+    this.value2='7380086948'
+   }
 
   ngOnInit(): void {
   }

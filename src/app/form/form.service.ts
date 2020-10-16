@@ -1,31 +1,41 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { catchError, map, tap } from 'rxjs/operators';
+import { catchError, tap } from 'rxjs/operators';
+import { of } from 'rxjs'
 class Form{
     name: string;
     email: string;
     feedback: string;
-    comments: string;
+    comment: string;
 }
 @Injectable({providedIn: 'root'})
 export class FormService {
 
-	constructor(private http: HttpClient){
+	private getformUrl = 'https://cs251-outlab-6.herokuapp.com/initial_values/';
+  private postformUrl =  'https://cs251-outlab-6.herokuapp.com/add_new_feedback/';
+  httpOptions = {
+    headers: new HttpHeaders({ 'Content-Type': 'application/json'})
+  };
 
-	}
-	
-	addfeed(form: Form){
-		return this.http.post('outlab-6.herokuapp.com/add_new_feedback/',{
-            name: form.name,
-            email: form.email,
-            feedback: form.feedback,
-            comments: form.comments
-		})
-    }
-    getfeed():Observable<Form>{
-        console.log('in service');
-        return this.http.get<Form>('https://cs251-outlab-6.herokuapp.com/initial_values/');
+  constructor(private http: HttpClient) { }
 
+  getForm(): Observable<Form> {
+    return this.http.get<Form>(this.getformUrl);
+  }
+
+  postForm(form: Form): Observable<Form> {
+    return this.http.post<Form>(this.postformUrl, form, this.httpOptions).pipe(
+      tap((postedForm: Form) => alert('Submitted successfully!')),
+      catchError(this.handleError('onSubmit()', form))
+    );
+  }
+
+  private handleError<T>(operation='operation', result?: T) {
+    return (error: any): Observable<T> => {
+      console.error(error);
+      alert(error.message);
+      return of(result as T);
     }
+  }
 }

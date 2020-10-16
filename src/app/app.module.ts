@@ -16,6 +16,7 @@ import { HeaderComponent } from './header/header.component';
 import { MatCardModule } from '@angular/material/card';
 import { MatExpansionModule } from '@angular/material/expansion';
 import { ReactiveFormsModule } from '@angular/forms'
+import { ClipboardModule } from '@angular/cdk/clipboard'
 @NgModule({
   declarations: [
     AppComponent,
@@ -36,7 +37,8 @@ import { ReactiveFormsModule } from '@angular/forms'
     MatCardModule,
     MatExpansionModule,
     ReactiveFormsModule,
-    HttpClientModule
+    HttpClientModule,
+    ClipboardModule,
   ],
   providers: [],
   bootstrap: [AppComponent],
