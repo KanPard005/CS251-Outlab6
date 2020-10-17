@@ -34,10 +34,10 @@
           Feedback
         </mat-panel-title>
       </mat-expansion-panel-header>
-      <mat-radio-group formControlName="feedback">
-      <div *ngFor='let fb of feedbacks'>
-        <mat-radio-button value='{{fb}} '[checked]='fb==getform.feedback'> {{fb}} </mat-radio-button>
-      </div>
+    <mat-radio-group formControlName='feedback' class='input'>
+      <mat-radio-button *ngFor='let fdbk of feedbacks' value="{{ fdbk }}" class='input'>
+        {{ fdbk }}
+      </mat-radio-button>
       </mat-radio-group>
       <mat-action-row>
         <button class="prev-button" mat-button type="button" (click)="prevStep()">Previous</button>
