@@ -19,10 +19,6 @@ class Form{
 export class FormComponent implements OnInit {
   feedbacks: string[] = ['Great', 'Okay', 'Not Good']
   feedbackForm= this.fbd.group({
-    // name: new FormControl(''),
-    // email: new FormControl(''),
-    // feedback: new FormControl(''),
-    // comment: new FormControl(''),
     name: ['', Validators.required],
     email: ['', [Validators.required, Validators.email]],
     feedback: ['', Validators.required],
@@ -51,9 +47,7 @@ export class FormComponent implements OnInit {
     if(this.feedbackForm.valid){
       this.formservice.postForm(this.feedbackForm.value).subscribe(form => {
         delete form['created'];
-        
         console.log(JSON.stringify(form));
-        // this.feedbackForm.setValue(form);
         this.getform=form;
       });
     }
