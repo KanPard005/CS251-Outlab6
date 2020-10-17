@@ -38,13 +38,13 @@ export class FormComponent implements OnInit {
   prevStep(){this.step--;}
   ngOnInit() {
     this.Getforms();
-    this.feedbackForm.get('feedback').setValue(this.getform.feedback);
   }
   Getforms(){
     console.log('in getforms');
     this.formservice.getForm().subscribe(result=>{
       console.log('data: ', result);
       this.getform=result;
+      this.feedbackForm.get('feedback').setValue(result.feedback);
     }, error=>console.log('error: ', error));
   }
   onSubmit(): void {
