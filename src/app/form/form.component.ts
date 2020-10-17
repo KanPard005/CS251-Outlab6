@@ -18,14 +18,18 @@ class Form{
 })
 export class FormComponent implements OnInit {
   feedbacks: string[] = ['Great', 'Okay', 'Not Good']
-  feedbackForm= new FormGroup({
-    name: new FormControl(''),
-    email: new FormControl(''),
-    feedback: new FormControl(''),
-    comment: new FormControl(''),
+  feedbackForm= this.fbd.group({
+    // name: new FormControl(''),
+    // email: new FormControl(''),
+    // feedback: new FormControl(''),
+    // comment: new FormControl(''),
+    name: ['', Validators.required],
+    email: ['', [Validators.required, Validators.email]],
+    feedback: ['', Validators.required],
+    comment: [''],
   });
   getform: Form;
-  constructor(private _f: FormBuilder, private formservice: FormService) {
+  constructor(private fbd: FormBuilder, private formservice: FormService) {
     this.getform= new Form();
   }
   step;
@@ -34,12 +38,7 @@ export class FormComponent implements OnInit {
   prevStep(){this.step--;}
   ngOnInit() {
     this.Getforms();
-    this.feedbackForm=new FormGroup({
-      name: new FormControl('',Validators.required),
-      email: new FormControl('', Validators.compose([Validators.required, Validators.email])),
-      feedback: new FormControl(''),
-      comment: new FormControl('')
-    });
+    this.feedbackForm.get('feedback').setValue(this.getform.feedback);
   }
   Getforms(){
     console.log('in getforms');
@@ -49,13 +48,13 @@ export class FormComponent implements OnInit {
     }, error=>console.log('error: ', error));
   }
   onSubmit(): void {
-    if(!this.feedbackForm.value['feedback']){this.feedbackForm.value['feedback']=this.getform.feedback}
     if(this.feedbackForm.valid){
       this.formservice.postForm(this.feedbackForm.value).subscribe(form => {
         delete form['created'];
         
         console.log(JSON.stringify(form));
-        this.feedbackForm.setValue(form);
+        // this.feedbackForm.setValue(form);
+        this.getform=form;
       });
     }
     else{
