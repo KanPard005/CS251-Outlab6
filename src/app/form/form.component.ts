@@ -25,7 +25,7 @@ export class FormComponent implements OnInit {
     // comment: new FormControl(''),
     name: ['', Validators.required],
     email: ['', [Validators.required, Validators.email]],
-    feedback: ['', Validators.required],
+    feedback: [''],
     comment: [''],
   });
   getform: Form;
@@ -48,6 +48,9 @@ export class FormComponent implements OnInit {
     }, error=>console.log('error: ', error));
   }
   onSubmit(): void {
+    if(!this.feedbackForm.value['feedback']){
+      this.feedbackForm.value['feedback']=this.getform.feedback;
+    }
     if(this.feedbackForm.valid){
       this.formservice.postForm(this.feedbackForm.value).subscribe(form => {
         delete form['created'];
