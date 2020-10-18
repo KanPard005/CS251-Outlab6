@@ -2,13 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { FormService } from './form.service';
 // import { CommonService } from '../common.service'
-class Form{
-  name: string;
-  email:string;
-  feedback: string;
-  comment: string
-
-}
+import { Form } from '../form';
 
 @Component({
   selector: 'app-form',
@@ -17,16 +11,20 @@ class Form{
   providers: [ FormService ]
 })
 export class FormComponent implements OnInit {
-  feedbacks: string[] = ['Great', 'Okay', 'Not Good']
+  feedbacks: string[] = ['Great', 'Okay', 'Not good']
   feedbackForm= this.fbd.group({
     name: ['', Validators.required],
     email: ['', [Validators.required, Validators.email]],
     feedback: [''],
     comment: [''],
   });
-  getform: Form;
+  getform: Form = {
+    name:'',
+    email: '',
+    feedback: '',
+    comment: '',
+  };
   constructor(private fbd: FormBuilder, private formservice: FormService) {
-    this.getform= new Form();
   }
   step;
   setStep(index: number) {this.step = index;}
