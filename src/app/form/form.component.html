@@ -7,7 +7,7 @@
           Name
         </mat-panel-title>
       </mat-expansion-panel-header>
-        <input matInput type="text" [placeholder]="getform.name" formControlName="name" >  
+        <input matInput type="text" formControlName="name" placeholder="{{ getform.name }}">  
       <mat-action-row>
         <button mat-button class="next-button" type="button" (click)="nextStep()">Next</button>
       </mat-action-row>
