@@ -35,9 +35,12 @@
         </mat-panel-title>
       </mat-expansion-panel-header>
     <mat-radio-group formControlName='feedback' class='input'>
-      <mat-radio-button *ngFor='let fdbk of feedbacks' value="{{ fdbk }}" class='input'>
+      <ng-container *ngFor='let fdbk of feedbacks'>
+      <mat-radio-button  value="{{ fdbk }}" class='input'>
         {{ fdbk }}
       </mat-radio-button>
+      <br>
+      </ng-container>
       </mat-radio-group>
       <mat-action-row>
         <button class="prev-button" mat-button type="button" (click)="prevStep()">Previous</button>
