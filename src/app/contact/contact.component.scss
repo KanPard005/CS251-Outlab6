@@ -9,18 +9,18 @@
 
 }
 .left{
-  float: left;
+  // float: left;
   display: inline;
-  margin-right: 5%;
-  width: max-content;
+  margin-right: 6%;
+  width: fit-content;
   box-shadow: 10px 10px 5px grey;
 
 }
 .right{
   display: inline;
-  margin-left: 5%;
-  float: inline-end;
-  width: max-content;
+  margin-left: 6%;
+  // float: inline-end;
+  width: fit-content;
   box-shadow: 10px 10px 5px grey;
 
 }
@@ -29,7 +29,7 @@
   display: flex;
   align-items: center;
   width: fit-content;
-  top: 10%;
+  top: 2%;
   max-width: 100%;
   margin: auto;
 }
